@@ -1,1 +1,80 @@
-<h1>Home</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <!-- Dark Theme (Bootswatch Darkly) -->
+    <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+   
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+</head>
+<body >
+
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+    <div class="container">
+
+        <a class="navbar-brand main-heading" href="#">
+            TaskOrganizer
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+
+               <li class="nav-item mx-2">
+                    <a class="nav-link nav-underline" href="{% url 'register' %}">Register</a>
+                </li>
+                
+                <br>
+                <li class="nav-item mx-2">
+                    <a class="nav-link nav-underline" href="{% url 'login' %}">Login</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+
+<div class="container text-center mt-5" id="main-content">
+    <h2>ThoughtOrganizer.... A home for your thoughts.</h2>
+
+    <br>
+
+    <a class="btn btn-outline-light" href="{% url 'register' %}">Register</a>
+</div>
+
+<dotlottie-wc
+      class="background-animation"
+    src="{% static '2ASLLPEa1O.lottie' %}"
+    autoplay
+    loop>
+</dotlottie-wc>
+
+<!-- Bootstrap 5 JS (NO jQuery needed) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js"></script>
+
+</body>
+</html>
