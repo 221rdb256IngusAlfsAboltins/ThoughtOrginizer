@@ -4,7 +4,7 @@
 
 {% block extra_css %}
  <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
- <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
+
 {% endblock %}
 
 {% block content %}
@@ -12,16 +12,20 @@
 
 <div id="main-content">
 
-    
-    <h2>
-        Dashboard
-    </h2>
-   
-   <form method="POST" action="{% url 'logout_user' %}">
-    {% csrf_token %}
-    <button type="submit">Log out</button>
-    </form>
+    <div class="main-box">
+        <div class="main-box-bar">
+            <h4>
+                Dashboard
+            </h4>
 
+        </div>
+        
+        
+        <form method="POST" action="{% url 'logout_user' %}">
+            {% csrf_token %}
+            <button type="submit">Log out</button>
+            </form>
+    </div>
 
 </div>
 
