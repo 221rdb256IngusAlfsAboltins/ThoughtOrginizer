@@ -1,7 +1,27 @@
-<form method="POST">
-    {% csrf_token %}
+{% extends "journal/navbar.html" %}
+{% load static %}
 
-    {{ CreateUserForm.as_p }}
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/RegisterForm.css' %}"> 
+{% endblock %}
 
-    <button type="submit">Submit</button>
-</form>
+{% block content %}
+
+   
+    <div class="form-container">
+        <form method="POST" class="myform">
+            {% csrf_token %}
+        <h3 style= "margin-bottom:15px;" >Create an account</h3>
+        <p style="font-size:10px;">Already have an account? &nbsp;  <a href="{% url 'my_login' %}" style="color:rgb(133, 137, 174)">Log in</a> </p>
+            
+        {{ CreateUserForm.username }}
+        {{ CreateUserForm.email }}
+        {{ CreateUserForm.password1 }}
+        {{ CreateUserForm.password2 }}
+
+            <button type="submit">Create acccount</button>
+        </form>
+    </div>
+
+{% endblock %}

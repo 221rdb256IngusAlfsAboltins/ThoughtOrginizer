@@ -1,0 +1,7 @@
+<h1>Are you user you want to logout?</h1>
+<a href="{% url 'my_login' %}">No</a>
+
+<form action="{% url 'logout_user' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes</button>
+</form>
