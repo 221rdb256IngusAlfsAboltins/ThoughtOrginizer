@@ -33,5 +33,16 @@ class CreateUserForm(UserCreationForm):
             field.help_text = ''
       
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput())
-    password = forms.CharField(widget=PasswordInput())
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "placeholder": "Username",
+        }),
+        label=""
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            "placeholder": "Password",
+        }),
+        label=""
+    )

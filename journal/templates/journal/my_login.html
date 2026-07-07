@@ -1,9 +1,56 @@
-<h1>Login</h1>
+{% extends "journal/navbar.html" %}
+{% load static %}
 
-<form method="POST">
-    {% csrf_token %}
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/RegisterForm.css' %}"> 
+{% endblock %}
 
-    {{LoginForm.as_p }}
+{% block content %}
 
-    <button type="submit">Submit</button>
-</form>
+   <div class="form-wrapper">
+    {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-secondary message-alert" role="alert">
+                 {{ message }}
+                </div>
+              
+            {% endif %}
+    {% endfor %}
+    <div class="form-container">
+        
+        <form method="POST" class="myform">
+            {% csrf_token %}
+
+        <h4 style= "margin-bottom:15px;text-align:center" >Welcome back!</h4>  
+        <p style="text-align:center">Enter your credentials to acces your account</p>  
+        {{ LoginForm.username }}
+        {{ LoginForm.password }}
+
+            <button type="submit">Log in</button>
+          
+         <p style=" padding-top:40px; text-align:center">Dont have an account? &nbsp;  <a href="{% url 'register' %}" style="color:rgb(133, 137, 174)">Sign Up</a> </p>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const alerts = document.querySelectorAll(".message-alert");
+
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            alert.classList.add("fade-out");
+
+            alert.addEventListener("transitionend", () => {
+                alert.remove();
+            }, { once: true });
+
+        }, 10000);
+    });
+});
+</script>
+{% endblock %}

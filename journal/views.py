@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from . forms import CreateUserForm, LoginForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages 
 
 def home(request):
     return render(request, 'journal/index.html')
@@ -13,7 +14,8 @@ def register(request):
 
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            messages.success(request, "User created!")
+            return redirect('my_login')
         
     context = {"CreateUserForm": form}
     return render(request, 'journal/register.html', context)
@@ -29,6 +31,7 @@ def my_login(request):
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
             user = authenticate(username=username, password=password)
+            
             if user is not None:
                 login(request, user)
                 return redirect('dashboard') 

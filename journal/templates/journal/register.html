@@ -8,20 +8,65 @@
 
 {% block content %}
 
-   
-    <div class="form-container">
-        <form method="POST" class="myform">
-            {% csrf_token %}
-        <h3 style= "margin-bottom:15px;" >Create an account</h3>
-        <p style="font-size:10px;">Already have an account? &nbsp;  <a href="{% url 'my_login' %}" style="color:rgb(133, 137, 174)">Log in</a> </p>
-            
-        {{ CreateUserForm.username }}
-        {{ CreateUserForm.email }}
-        {{ CreateUserForm.password1 }}
-        {{ CreateUserForm.password2 }}
+<div class="form-container">
+    <form method="POST" class="myform">
+        {% csrf_token %}
 
-            <button type="submit">Create acccount</button>
-        </form>
-    </div>
+        <h3 style="margin-bottom:15px;">Create an account</h3>
+
+        <p style="font-size:10px;">
+            Already have an account? &nbsp;
+            <a href="{% url 'my_login' %}" style="color:rgb(133, 137, 174)">
+                Log in
+            </a>
+        </p>
+
+
+        {% for error in CreateUserForm.non_field_errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+
+
+        <div class="form-group">
+            {{ CreateUserForm.username }}
+
+            {% for error in CreateUserForm.username.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+
+        <div class="form-group">
+            {{ CreateUserForm.email }}
+
+            {% for error in CreateUserForm.email.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+
+        <div class="form-group">
+            {{ CreateUserForm.password1 }}
+
+            {% for error in CreateUserForm.password1.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+
+        <div class="form-group">
+            {{ CreateUserForm.password2 }}
+
+            {% for error in CreateUserForm.password2.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+
+        <button type="submit">Create account</button>
+
+    </form>
+</div>
+
 
 {% endblock %}
