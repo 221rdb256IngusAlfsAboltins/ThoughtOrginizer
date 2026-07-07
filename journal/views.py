@@ -3,6 +3,7 @@ from . forms import CreateUserForm, LoginForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
+from django.views.decorators.cache import never_cache
 
 def home(request):
     return render(request, 'journal/index.html')
@@ -24,6 +25,7 @@ def register(request):
             
 
 def my_login(request):
+    print("Tessstinnggg2")
     form = LoginForm()
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
@@ -39,13 +41,17 @@ def my_login(request):
     context = {"LoginForm":form}
     return render(request, 'journal/my_login.html',context)
        
-@login_required(login_url='my_login')
-def logout_user(request):
+
+def logout_users(request):
+    print("Tessstinnggg1")
     if request.method == "POST":
+        print(request.user)  # should show username before logout
+        print("Tessstinnggg")
         logout(request)
         return redirect('home') 
     
     return render(request, 'journal/logout_confirmation.html')
+
 
 @login_required(login_url='my_login')
 def dashboard(request):

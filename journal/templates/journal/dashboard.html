@@ -1,5 +1,30 @@
-<h1>Dashboard</h1>
-<form action= "{% url 'logout_user' %}" method="POST">
+{% extends "journal/navbar.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+ <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-content">
+
+    
+    <h2>
+        Dashboard
+    </h2>
+   
+   <form method="POST" action="{% url 'logout_user' %}">
     {% csrf_token %}
-    <button type="submit">Submit</button>
-</form>
+    <button type="submit">Log out</button>
+    </form>
+
+
+</div>
+
+
+{% endblock %}
+
