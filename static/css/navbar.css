@@ -83,96 +83,92 @@
     padding-right: 5vw !important;
 }
 @media (max-width: 991px) {
-    .navbar:has(.navbar-toggler[aria-expanded="true"]) {
-        background-color: rgba(18, 18, 18, 0.895) !important;
-        border-radius: 0 0 10px 10px ;
-     
-        
-    }
-    .main-box {
-        width: calc(100% - 20px) !important; 
-        max-width: 1500px !important;
-   
-        margin:10px auto !important;
-       
+                    .navbar:has(.navbar-toggler[aria-expanded="true"]) {
+                        background-color: rgba(18, 18, 18, 0.895) !important;
+                        border-radius: 0 0 10px 10px ;
+                    
+                        
+                    }
+                    .main-box {
+                        width: calc(100% - 20px) !important; 
+                        max-width: 1500px !important;
+                
+                        margin:10px auto !important;
+                    
 
-    }
-    .main-box-content{
-        padding: 10px !important;
-    }
-    
-    .navbar_btn_container {
-        margin-top: 4px;
-        background-color: rgba(18, 18, 18, 0.858);
-        width: 100%;
-        padding: 0px  !important;
-        margin-bottom: 0px  !important;
+                    }
+                    .main-box-content{
+                        padding: 10px !important;
+                    }
+                    
+                    .navbar_btn_container {
+                        margin-top: 4px;
+                        background-color: rgba(18, 18, 18, 0.858);
+                        width: 100%;
+                        padding: 0px  !important;
+                        margin-bottom: 0px  !important;
 
-    }
-       
-    #navbarNavDropdown {
-        padding-top: 6px;
-        margin-top: 20px;
-        padding-bottom: 10px;
-        background-color: rgba(6, 6, 6, 0.71);
-        border-radius: 0 0 10px 10px ;
-        border-bottom: 1px solid rgb(59, 59, 59) !important;
+                    }
+                    
+                    #navbarNavDropdown {
+                        padding-top: 6px;
+                        margin-top: 20px;
+                        padding-bottom: 10px;
+                        background-color: rgba(6, 6, 6, 0.71);
+                        border-radius: 0 0 10px 10px ;
+                        border-bottom: 1px solid rgb(59, 59, 59) !important;
 
-     
-    }
- 
-  
-    .navbar_btn_container {
-    margin-left:0px !important;
-    height:50px;
-    font-size: 20px;
+                    
+                    }
+                
+                
+                    .navbar_btn_container {
+                    margin-left:0px !important;
+                    height:50px;
+                    font-size: 20px;
 
-    }
-    .navbar_btn_container {
-         transition: transform 0.2s ease;;
-    }
-   
-   .navbar_btn_container:active {
-        background-color: rgb(37, 37, 37)!important;
-        transform: scale(1.4);
-    }
+                    }
+                    .navbar_btn_container {
+                        transition: transform 0.2s ease;;
+                    }
+                
+                .navbar_btn_container:active {
+                        background-color: rgb(37, 37, 37)!important;
+                        transform: scale(1.4);
+                    }
 
-     #navbarNavDropdown{
-    padding-right: 0vw !important;
-    }
+                    #navbarNavDropdown{
+                    padding-right: 0vw !important;
+                    }
 
-    .navbar {
-        background-color: transparent !important;
-        color: white !important;
-        z-index: 1000;
-        padding-bottom: 10px;
+                    .navbar {
+                        background-color: transparent !important;
+                        color: white !important;
+                        z-index: 1000;
+                        padding-bottom: 10px;
 
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-
-    .navbar.scrolled {
-        background-color: rgba(0, 0, 0, 0.95) !important;
-        backdrop-filter: blur(10px);
-        padding-bottom: 7px;
-    }
+                        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
 
 
-    .navbar-container {
-        padding-top: 15px;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+                    .navbar.scrolled {
+                        background-color: rgba(0, 0, 0, 0.95) !important;
+                        backdrop-filter: blur(10px);
+                        padding-bottom: 7px;
+                    }
 
 
-    .navbar.scrolled .navbar-container {
-        padding-top: 7px !important;
-    }
+                    .navbar-container {
+                        padding-top: 15px;
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+
+                        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
 
 
-
-
+                    .navbar.scrolled .navbar-container {
+                        padding-top: 7px !important;
+                    }
 
     }

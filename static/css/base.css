@@ -287,9 +287,12 @@ input:-webkit-autofill:active {
     width: 100%;
     table-layout: fixed;
 }
-#view_allthoughts_table td{
-    height: 20px ;
-    
+#view_allthoughts_table td {
+    height: 20px;
+    max-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #view_allthoughts_table td:nth-child(3) {
 
@@ -299,6 +302,7 @@ input:-webkit-autofill:active {
 #view_allthoughts_table td:nth-child(1) {
     width: 25%;
     overflow: hidden;
+    
 }
 
 #view_allthoughts_table th:nth-child(2),
