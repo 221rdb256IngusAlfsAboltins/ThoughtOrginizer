@@ -1,11 +1,32 @@
-
 .navbar {
     background-color: transparent !important;
-    color:white !important; 
-    z-index: 2;
-    padding-bottom: 0px;
+    color: white !important;
+    z-index: 1000;
+    padding-bottom: 20px;
+
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.758) !important;
+    backdrop-filter: blur(10px);
+    padding-bottom: 10px;
+}
+
+
+.navbar-container {
+    padding-top: 30px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.navbar.scrolled .navbar-container {
+    padding-top: 10px !important;
+}
 .navbar-toggler {
     border-color: rgb(90, 90, 90);
 
@@ -27,7 +48,7 @@
     margin-left: 10vw;
 }
 .logo:hover{
-    color:rgb(126, 126, 126);
+    color:rgb(126, 126, 126)
 }
 
 .nav-underline {
@@ -57,54 +78,84 @@
     color:white !important;  
     width: 100%;
 }
-.navbar-container {
-    margin-top:20px;
-    padding-left: 0px !important;
-    padding-right:0px !important;
 
-}
 #navbarNavDropdown{
     padding-right: 5vw !important;
 }
 @media (max-width: 991px) {
     .navbar:has(.navbar-toggler[aria-expanded="true"]) {
-        background-color: rgba(24, 24, 24, 0.534) !important;
+        background-color: rgba(18, 18, 18, 0.895) !important;
         border-radius: 0 0 10px 10px ;
      
         
     }
-       
-    .navbar:has(.navbar-toggler[aria-expanded="true"]) .navbar_btn_container {
+    .main-box {
+        width: calc(100% - 40px) !important; 
+        max-width: 1500px !important;
+
+        margin:20px auto !important;
+
+    }
+    #main-content{
+        top:70px !important;
+    }   
+    .navbar_btn_container {
         margin-top: 4px;
-        background-color: rgb(19, 19, 19);
+        background-color: rgba(18, 18, 18, 0.858);
         width: 100%;
         padding: 0px  !important;
         margin-bottom: 0px  !important;
 
     }
        
-    .navbar:has(.navbar-toggler[aria-expanded="true"]) #navbarNavDropdown {
+    #navbarNavDropdown {
         padding-top: 6px;
         margin-top: 20px;
         padding-bottom: 10px;
-        background-color: rgba(6, 6, 6, 0.368);
+        background-color: rgba(6, 6, 6, 0.71);
         border-radius: 0 0 10px 10px ;
         border-bottom: 1px solid rgb(59, 59, 59) !important;
 
      
     }
  
-    .navbar-container {
-    margin-top:20px;
-
-    }
+  
     .navbar_btn_container {
     margin-left:0px !important;
 
     }
+
      #navbarNavDropdown{
     padding-right: 0vw !important;
-}
+    }
 
-    
+    .navbar {
+        background-color: transparent !important;
+        color: white !important;
+        z-index: 1000;
+        padding-bottom: 10px;
+
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+    .navbar.scrolled {
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px);
+        padding-bottom: 7px;
+    }
+
+
+    .navbar-container {
+        padding-top: 15px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+    .navbar.scrolled .navbar-container {
+        padding-top: 7px !important;
+    }
 }

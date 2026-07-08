@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from . forms import CreateUserForm, LoginForm
+from . forms import CreateUserForm, LoginForm, ThoughtForm  
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
@@ -43,10 +43,8 @@ def my_login(request):
        
 
 def logout_users(request):
-    print("Tessstinnggg1")
     if request.method == "POST":
         print(request.user)  # should show username before logout
-        print("Tessstinnggg")
         logout(request)
         return redirect('home') 
     
@@ -57,3 +55,23 @@ def logout_users(request):
 def dashboard(request):
     return render(request, 'journal/dashboard.html')
 
+
+@login_required(login_url='my_login')
+def create_thought(request):
+
+    if request.method == "POST":
+        form = ThoughtForm(request.POST)
+     
+        if form.is_valid():
+            print("testng")
+            thought = form.save(commit=False)  # Don't save to DB yet
+            thought.user = request.user       # Attach logged-in user
+            thought.save()
+
+            return redirect('dashboard')  # Redirect after success
+
+    else:
+        form = ThoughtForm()
+
+    context = {"ThoughtForm": form}
+    return render(request, 'journal/create_thought.html', context)

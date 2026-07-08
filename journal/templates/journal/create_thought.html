@@ -1,0 +1,55 @@
+{% extends "journal/navbar.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-content">
+
+    <div class="main-box">
+        <div class="main-box-bar">
+            <h4>
+                What's on your mind?
+            </h4>
+
+        </div>
+        <div class="thought-form-container">
+            <form method="POST" class="myform">
+                {% csrf_token %}
+                {{ ThoughtForm.errors }}
+                <div class="form-group">
+                    {{ ThoughtForm.title }}
+
+                    {% for error in ThoughtForm.title.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+
+                <div class="form-group" id="thought-form-content-input">
+                    {{  ThoughtForm.content  }}
+
+                    {% for error in ThoughtForm.content.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div style="display: flex; justify-content: right; align-items: right; padding-right:30px">
+                    <button type="submit">Create</button>
+                </div>
+                
+            
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+

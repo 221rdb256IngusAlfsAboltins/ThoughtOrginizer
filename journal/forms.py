@@ -2,7 +2,29 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms.widgets import PasswordInput, TextInput
 from django import forms
+from django.forms import ModelForm
+from django.forms.widgets import Textarea
 
+from . models import Thought
+
+
+class ThoughtForm(ModelForm):
+    class Meta:
+        model = Thought
+        fields = ['title', 'content']
+        widgets = {
+            'content': Textarea(attrs={
+                'placeholder': 'Write your thought...',
+                'rows': 5
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['title'].widget.attrs.update({
+            'placeholder': 'Title'
+        })
 
 class CreateUserForm(UserCreationForm):
 

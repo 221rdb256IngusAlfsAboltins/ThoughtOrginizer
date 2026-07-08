@@ -8,7 +8,9 @@
 
 {% block content %}
 
-<div class="form-container">
+<div class="form-wrapper">
+
+    <div class="form-container">
     <form method="POST" class="myform">
         {% csrf_token %}
 
@@ -66,6 +68,8 @@
         <button type="submit">Create account</button>
 
     </form>
+</div>
+
 </div>
 
 
