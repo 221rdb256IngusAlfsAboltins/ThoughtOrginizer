@@ -20,36 +20,42 @@
 
         </div>
         <div class = "main-box-content" id="view_allthoughts_table">
-            <form method="POST" action="{% url 'delete_thought' %}">
-                {% csrf_token %}
-                <table >
 
-                    <tr class="table-title">
-                        <th >Title</th>
-                        <th >Content</th>
-                        <th >Date</th>
-                        <th ><i class="bi bi-trash"></i></th>
-                    </tr>
+            {% if Thoughts %}           
+                <form method="POST" action="{% url 'delete_thought' %}">
+                    {% csrf_token %}
+                    <table >
 
-                    {% for Thought in Thoughts %}
-                    <tr>
+                        <tr class="table-title">
+                            <th >Title</th>
+                            <th >Content</th>
+                            <th >Date</th>
+                            <th ><i class="bi bi-trash"></i></th>
+                        </tr>
+
+                        {% for Thought in Thoughts %}
+                        <tr>
+                            
+                            <td>{{Thought.title}}</td>
+                            <td >{{Thought.content}}</td>
+                            <td ><div class="date-cell">{{Thought.date_posted|date:"Y.m.d" }}</div></td>
+                            <td><input type="checkbox" name="thoughts" value="{{ Thought.id }}"></td>
+                
+                        </tr>
                         
-                        <td>{{Thought.title}}</td>
-                        <td >{{Thought.content}}</td>
-                        <td ><div class="date-cell">{{Thought.date_posted|date:"Y.m.d" }}</div></td>
-                        <td><input type="checkbox" name="thoughts" value="{{ Thought.id }}"></td>
-          
-                    </tr>
-                   
-                    {% endfor %}
-                    
-                </table>
-                 <div style="display: flex; justify-content: right; align-items: right; padding-right:30px; padding-top:30px;">
-                    <button id="delete-button" type="submit" style="display:none;">
-                        Delete
-                    </button>
-                </div>
-            </form>
+                        {% endfor %}
+                        
+                    </table>
+                        <div style="display: flex; justify-content: right; align-items: right; padding-right:30px; padding-top:30px;">
+                        <button id="delete-button" type="submit" style="display:none;">
+                            Delete
+                        </button>
+                    </div>
+                </form>
+             {% else %}
+                <p style="font-size:17px; color:rgb(179, 177, 177)"> No thoughts written :(</p>
+                <p style="font-size:17px; color:rgb(179, 177, 177)"> <a style="color:rgb(133, 137, 174)" href="{%url 'create_thought'%}"> Go ahead create your first thought!</a></p>
+             {% endif %}
         </div>
        
      
