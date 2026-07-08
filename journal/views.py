@@ -42,7 +42,7 @@ def my_login(request):
     return render(request, 'journal/my_login.html',context)
        
 
-def logout_users(request):
+def logout_user(request):
     if request.method == "POST":
         print(request.user)  # should show username before logout
         logout(request)
@@ -64,11 +64,11 @@ def create_thought(request):
      
         if form.is_valid():
             print("testng")
-            thought = form.save(commit=False)  # Don't save to DB yet
-            thought.user = request.user       # Attach logged-in user
+            thought = form.save(commit=False)  
+            thought.user = request.user      
             thought.save()
 
-            return redirect('dashboard')  # Redirect after success
+            return redirect('dashboard') 
 
     else:
         form = ThoughtForm()

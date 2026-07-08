@@ -45,7 +45,13 @@
             </div>
         </div>
         <div class="main-box-footer">
-
+            <form method="POST" action="{% url 'logout_user'%}">
+                {% csrf_token %}
+                <div style="display: flex; justify-content: right; align-items: right; padding-right:30px">
+                     <button style="margin-bottom:20px" type="submit">Log out</button>
+                </div>
+              
+            </form>
         </div>
     </div>
 
