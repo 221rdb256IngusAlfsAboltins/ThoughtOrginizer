@@ -1,0 +1,57 @@
+{% extends "journal/navbar.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-content">
+
+    <div class="main-box">
+        <div class="main-box-bar">
+            <h4>
+                Thought:{{thought.title}} )
+            </h4>
+
+        </div>
+        <div class="main-box-content thought-form-container">
+            
+
+            <form method="POST" class="myform">
+                {% csrf_token %}
+                {{ UpdateThoughtForm.errors }}
+                <div class="form-group">
+                    {{ UpdateThoughtForm.title }}
+
+                    {% for error in UpdateThoughtForm.title.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+
+                <div class="form-group" id="thought-form-content-input">
+                    {{  UpdateThoughtForm.content  }}
+
+                    {% for error in UpdateThoughtForm.content.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div style="display: flex; justify-content: right; align-items: right; padding-right:30px">
+                    <button type="submit">Update</button>
+                </div>
+                
+            
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+

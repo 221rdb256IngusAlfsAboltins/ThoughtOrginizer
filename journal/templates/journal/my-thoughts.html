@@ -34,14 +34,19 @@
                         </tr>
 
                         {% for Thought in Thoughts %}
-                        <tr>
+
+                        
+                        <tr class="table_row" >
                             
-                            <td>{{Thought.title}}</td>
-                            <td >{{Thought.content}}</td>
-                            <td ><div class="date-cell">{{Thought.date_posted|date:"Y.m.d" }}</div></td>
-                            <td><input type="checkbox" name="thoughts" value="{{ Thought.id }}"></td>
+                                <td  onclick="window.location='{% url 'view_thought' Thought.id %}'" style="cursor: pointer;">{{Thought.title}}</td>
+                                <td onclick="window.location='{% url 'view_thought' Thought.id %}'" style="cursor: pointer;">{{Thought.content}}</td>
+                                <td  onclick="window.location='{% url 'view_thought' Thought.id %}'" style="cursor: pointer;"><div class="date-cell">{{Thought.date_posted|date:"Y.m.d" }}</div></td>
+                      
+                           
+                                <td class= "exclude_delete_chckbox"><input type="checkbox" name="thoughts" value="{{ Thought.id }}"></td>
                 
                         </tr>
+                        
                         
                         {% endfor %}
                         
@@ -82,6 +87,8 @@
             }
         });
     });
+
+    
 </script>
 
 {% endblock %}

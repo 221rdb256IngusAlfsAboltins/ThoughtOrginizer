@@ -95,3 +95,31 @@ def delete_thought(request):
             user=request.user
         ).delete()
     return redirect('my-thoughts')
+
+
+@login_required(login_url='my_login')
+def view_thought(request, id):
+    try:
+        thought_inst = Thought.objects.get(
+            pk=id,
+            user=request.user
+        )
+    except:
+        return redirect('my-thoughts')
+    
+    if request.method == "POST":
+        form = ThoughtForm(request.POST, instance=thought_inst)
+
+        if form.is_valid():
+            thought = form.save(commit=False)
+            thought.user = request.user
+            thought.save()
+
+            return redirect('my-thoughts')
+
+    else:
+
+        form = ThoughtForm(instance = thought_inst)
+
+    context = {"UpdateThoughtForm": form, "thought":thought_inst}
+    return render(request, 'journal/view_thought.html', context)
