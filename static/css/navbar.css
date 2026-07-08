@@ -90,11 +90,15 @@
         
     }
     .main-box {
-        width: calc(100% - 40px) !important; 
+        width: calc(100% - 20px) !important; 
         max-width: 1500px !important;
+   
+        margin:10px auto !important;
+       
 
-        margin:20px auto !important;
-
+    }
+    .main-box-content{
+        padding: 10px !important;
     }
     
     .navbar_btn_container {
@@ -120,7 +124,17 @@
   
     .navbar_btn_container {
     margin-left:0px !important;
+    height:50px;
+    font-size: 20px;
 
+    }
+    .navbar_btn_container {
+         transition: transform 0.2s ease;;
+    }
+   
+   .navbar_btn_container:active {
+        background-color: rgb(37, 37, 37)!important;
+        transform: scale(1.4);
     }
 
      #navbarNavDropdown{
@@ -156,4 +170,9 @@
     .navbar.scrolled .navbar-container {
         padding-top: 7px !important;
     }
-}
+
+
+
+
+
+    }

@@ -60,23 +60,18 @@
 
                 {% if user.is_authenticated  %}
                  <li class="nav-item mx-2 navbar_btn_container">
-                    <a class="nav-link nav-underline navbar_btn" href="{% url 'home' %}">
+                    <a class="nav-link nav-underline navbar_btn" href="{% url 'create_thought' %}">
                         Write a thought
                     </a>
                 </li>
                  <li class="nav-item mx-2 navbar_btn_container">
-                    <a class="nav-link nav-underline navbar_btn" href="{% url 'home' %}">
+                    <a class="nav-link nav-underline navbar_btn" href="{% url 'my-thoughts' %}">
                         Your thoughts
                     </a>
                 </li>
                 <li class="nav-item mx-2 navbar_btn_container">
-                    <a class="nav-link nav-underline navbar_btn" href="{% url 'home' %}">
-                        Dashboard
-                    </a>
-                </li>
-                <li class="nav-item mx-2 navbar_btn_container">
-                    <a class="nav-link nav-underline navbar_btn" href="{% url 'home' %}">
-                        Dashboard
+                    <a class="nav-link nav-underline navbar_btn" href="{% url 'profile' %}">
+                        Profile
                     </a>
                 </li>
                 {% endif %}

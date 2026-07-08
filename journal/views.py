@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.views.decorators.cache import never_cache
+from . models import Thought
 
 def home(request):
     return render(request, 'journal/index.html')
@@ -36,12 +37,13 @@ def my_login(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('dashboard') 
+                return redirect('profile') 
   
     context = {"LoginForm":form}
     return render(request, 'journal/my_login.html',context)
        
 
+@login_required(login_url='my_login')
 def logout_user(request):
     if request.method == "POST":
         print(request.user)  # should show username before logout
@@ -68,10 +70,28 @@ def create_thought(request):
             thought.user = request.user      
             thought.save()
 
-            return redirect('dashboard') 
+            return redirect('my-thoughts') 
 
     else:
         form = ThoughtForm()
 
     context = {"ThoughtForm": form}
     return render(request, 'journal/create_thought.html', context)
+
+
+@login_required(login_url='my_login')
+def my_thoughts(request):
+    AllThoughts = Thought.objects.all().filter(user=request.user)
+    context = {'Thoughts': AllThoughts}
+    return render(request, 'journal/my-thoughts.html',context)
+
+
+@login_required(login_url='my_login')
+def delete_thought(request):
+    if request.method == "POST":
+        selected = request.POST.getlist("thoughts")
+        Thought.objects.filter(
+            id__in=selected,
+            user=request.user
+        ).delete()
+    return redirect('my-thoughts')

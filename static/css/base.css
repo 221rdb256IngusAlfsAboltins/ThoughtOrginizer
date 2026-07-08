@@ -187,9 +187,9 @@ input:-webkit-autofill:active {
 
 .main-box-content {
     width: 100%!important;
-    padding: 30px !important;
+    padding: 30px ;
     flex-direction: column;
-   
+    box-sizing: border-box;
 }
 .main-box-content input{
     margin-top: 10px;
@@ -260,7 +260,7 @@ input:-webkit-autofill:active {
 
 .main-box-content table {
     width: 100%;
-    max-width: 500px;
+    
     font-family: Arial, sans-serif;
 
     border-collapse: separate;
@@ -270,11 +270,61 @@ input:-webkit-autofill:active {
     border-radius: 12px;
     overflow: hidden;
 }
+#profile_table table{
+    max-width: 500px;
+    
+}
+#profile_table th {
+    width: 40%;
+
+}
+#profile_table td {
+    width: 60%;
+}
+#view_allthoughts_table table{
+    max-width: 1500px;
+    
+    width: 100%;
+    table-layout: fixed;
+}
+#view_allthoughts_table td{
+    height: 20px ;
+    
+}
+#view_allthoughts_table td:nth-child(3) {
+
+    overflow-y: hidden;
+}
+#view_allthoughts_table th:nth-child(1),
+#view_allthoughts_table td:nth-child(1) {
+    width: 25%;
+    overflow: hidden;
+}
+
+#view_allthoughts_table th:nth-child(2),
+#view_allthoughts_table td:nth-child(2) {
+    width: auto;
+    overflow: hidden;
+}
+
+#view_allthoughts_table th:nth-child(3),
+#view_allthoughts_table td:nth-child(3) {
+    width: 100px ;
+}
+#view_allthoughts_table th:nth-child(4),
+#view_allthoughts_table td:nth-child(4) {
+    width: 50px ;
+}
+.date-cell {
+    height: 20px;
+    
+}
 
 
 .main-box-content th,
 .main-box-content td {
     padding: 10px;
+   
     text-align: left;
     
     border-right: 2px solid  #1c1c1c;
@@ -284,9 +334,15 @@ input:-webkit-autofill:active {
 
 .table-title th{
     background-color:  #1c1c1c !important;
+      color:#e4e4e4 !important;
 }
+
 .main-box-content th {
     border-right: none;
+    font-weight: normal;
+    color:#9d9d9d;
+
+    
 }
 /* Remove borders on the outside */
 .main-box-content tr th:last-child,
@@ -297,11 +353,4 @@ input:-webkit-autofill:active {
 .main-box-content tr:last-child th,
 .main-box-content tr:last-child td {
     border-bottom: none;
-}
-.main-box-content th {
-    width: 40%;
-}
-
-.main-box-content td {
-    width: 60%;
 }
