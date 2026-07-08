@@ -52,8 +52,8 @@ def logout_users(request):
 
 
 @login_required(login_url='my_login')
-def dashboard(request):
-    return render(request, 'journal/dashboard.html')
+def profile(request):
+    return render(request, 'journal/profile.html')
 
 
 @login_required(login_url='my_login')

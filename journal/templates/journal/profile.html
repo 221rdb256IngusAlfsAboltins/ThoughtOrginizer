@@ -1,0 +1,56 @@
+{% extends "journal/navbar.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-content">
+
+    <div class="main-box">
+        <div class="main-box-bar">
+            <h4>
+                Profile
+            </h4>
+
+        </div>
+        <div class = "main-box-content">
+            <div >
+                <table >
+                    <tr class="table-title">
+                        <th colspan="2">Profile info</th>
+                    </tr>
+                    <tr>
+                        <th>Username:</th>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Password:</th>
+                        <td>********</td>
+                    </tr>
+                    <tr>
+                        <th>Date Joined:</th>
+                        <td>{{user.date_joined}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="main-box-footer">
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
