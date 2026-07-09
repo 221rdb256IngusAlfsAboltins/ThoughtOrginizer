@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from . forms import CreateUserForm, LoginForm, ThoughtForm  
+from . forms import CreateUserForm, LoginForm, ThoughtForm,UpdateUserForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
@@ -54,8 +54,26 @@ def logout_user(request):
 
 
 @login_required(login_url='my_login')
-def profile(request):
-    return render(request, 'journal/profile.html')
+def profile_management(request):
+    
+    if request.method == "POST":
+        form = UpdateUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            thought = form.save(commit=False)
+            thought.user = request.user
+            thought.save()
+            return redirect('profile')
+        else:
+            context = {
+                'UpdateUserForm': form,
+                'edit_mode': True
+            }
+            return render(request, 'journal/profile.html', context)
+           
+    else:
+        form = UpdateUserForm(instance=request.user)
+    context = {'UpdateUserForm':form}
+    return render(request, 'journal/profile.html', context)
 
 
 @login_required(login_url='my_login')
@@ -65,7 +83,6 @@ def create_thought(request):
         form = ThoughtForm(request.POST)
      
         if form.is_valid():
-            print("testng")
             thought = form.save(commit=False)  
             thought.user = request.user      
             thought.save()
@@ -123,3 +140,4 @@ def view_thought(request, id):
 
     context = {"UpdateThoughtForm": form, "thought":thought_inst}
     return render(request, 'journal/view_thought.html', context)
+

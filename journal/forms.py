@@ -68,3 +68,26 @@ class LoginForm(AuthenticationForm):
         }),
         label=""
     )
+
+
+class UpdateUserForm(forms.ModelForm):
+    password = None
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+        exclude = ['password','password1']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs.update({
+            'placeholder': 'Username'
+        })
+
+        self.fields['email'].widget.attrs.update({
+            'placeholder': 'Email address'
+        })
+
+
+        for field in self.fields.values():
+            field.help_text = ''
