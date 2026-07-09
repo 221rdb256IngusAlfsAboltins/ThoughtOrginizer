@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.views.decorators.cache import never_cache
 from . models import Thought
 
+from django.contrib.auth.models import User
+
 def home(request):
     return render(request, 'journal/index.html')
 
@@ -38,6 +40,11 @@ def my_login(request):
             if user is not None:
                 login(request, user)
                 return redirect('profile') 
+            
+        else:
+            context = {"LoginForm": form}
+            return render(request, 'journal/my_login.html', context)
+
   
     context = {"LoginForm":form}
     return render(request, 'journal/my_login.html',context)
@@ -141,3 +148,11 @@ def view_thought(request, id):
     context = {"UpdateThoughtForm": form, "thought":thought_inst}
     return render(request, 'journal/view_thought.html', context)
 
+
+@login_required(login_url='my_login')
+def delete_account(request):
+    if request.method == "POST":
+        request.user.delete()
+        return redirect('home')
+    else:
+        return render(request, 'journal/delete_account.html')

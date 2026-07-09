@@ -116,14 +116,25 @@
             
         </div>
         <div class="main-box-footer">
-            <form method="POST" action="{% url 'logout_user'%}">
-                {% csrf_token %}
-                <div style="display: flex; justify-content: right; align-items: right; padding-right:30px">
-                     <button style="margin-bottom:20px" type="submit">Log out</button>
-                </div>
-              
-            </form>
-            <a href=""></a>
+
+            <div class="main-box-footer-section">
+                <a class="link-btn delete-btn" href="{% url 'delete_account' %}">
+                    Delete account
+                </a>
+            </div>
+
+
+            <div class="main-box-footer-section ">
+
+                <form method="POST" action="{% url 'logout_user'%}">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
+
+                
+
+            </div>
+
         </div>
     </div>
 

@@ -1,0 +1,65 @@
+{% extends "journal/navbar.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-content">
+
+    <div class="main-box">
+        <div class="main-box-bar">
+            <h4>
+                Account Deletion
+            </h4>
+
+        </div>
+        <div class = "main-box-content">
+            <div class="profile-widgets" style=" justify-content: center;">
+                <div class="widget">
+                    <div class="widget-window">
+                        <h5 style="color:rgb(255, 93, 93)"> Are you sure you want to delete the account   ( {{user.username}} ) ?</h5>
+
+                        
+                        <div class="horizontal-container center-container" style =" gap: 150px ; padding-top:30px">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button class="delete-btn" style= "background-color:rgb(210, 40, 40); font-weight:bold;" type="submit" >Yes</button>
+                        </form>
+                    <a style="font-weight:bold;" class="link-btn"  href="{% url 'profile' %}" >
+                        Cancel
+
+                    </a></div>
+                    
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="main-box-footer">
+
+            <div class="main-box-footer-section">
+                
+            </div>
+
+            <div class="main-box-footer-section ">
+
+                <form method="POST" action="{% url 'logout_user'%}">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
