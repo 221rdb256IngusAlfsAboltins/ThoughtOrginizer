@@ -5,9 +5,13 @@ from django import forms
 from django.forms import ModelForm
 from django.forms.widgets import Textarea
 
-from . models import Thought
+from . models import Thought, Profile
 
-
+class Profile():
+    class Meta:
+        model = Profile
+        fields = ['profile_pic']
+        
 class ThoughtForm(ModelForm):
     class Meta:
         model = Thought

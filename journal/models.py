@@ -8,3 +8,9 @@ class Thought(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
     # NEPIEVIENOT user_id DJANGO automatiski izdara
     # japarmaina pēc no null true uz null false
+
+
+class Profile(models.Model):
+    #blank = True allows blank or null value in the form
+    profile_pic =models.ImageField(blank=True, default='Default.png')
+    user = models.OneToOneField(User,max_length=10, on_delete=models.CASCADE)

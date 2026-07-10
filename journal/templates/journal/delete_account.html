@@ -26,10 +26,10 @@
                         <h5 style="color:rgb(255, 93, 93)"> Are you sure you want to delete the account   ( {{user.username}} ) ?</h5>
 
                         
-                        <div class="horizontal-container center-container" style =" gap: 150px ; padding-top:30px">
+                        <div class="horizontal-container center-container" style ="gap:clamp(20px, 20vw, 150px) ; padding-top:30px;">
                         <form method="POST">
                             {% csrf_token %}
-                            <button class="delete-btn" style= "background-color:rgb(210, 40, 40); font-weight:bold;" type="submit" >Yes</button>
+                            <button class="delete-btn" style= "background-color:rgb(210, 40, 40); font-weight:bold;" type="submit" >Delete Account</button>
                         </form>
                     <a style="font-weight:bold;" class="link-btn"  href="{% url 'profile' %}" >
                         Cancel

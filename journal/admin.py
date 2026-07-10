@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Thought
+from . models import Thought,Profile
 
 admin.site.register(Thought)
-# Register your models here.
+admin.site.register(Profile)
