@@ -8,7 +8,7 @@ from . models import Thought,Profile
 from django.db import transaction
 
 from django.contrib.auth.models import User
-
+import os
 def home(request):
     return render(request, 'journal/index.html')
 
@@ -73,9 +73,15 @@ def profile_management(request):
         form = UpdateUserForm(request.POST, instance=request.user)
         form_2 = UpdateProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid() and form_2.is_valid():
-            with transaction.atomic():#abi vai neiviens netiek saglabaati ,gadijumā ja vienu no formām neizdodas saglabāt
+            with transaction.atomic():#visi vai neiviens netiek izpildīti ,gadijumā ja vienu no formām neizdodas saglabāt
+                
+                old_profile_pic = profile.profile_pic.path if profile.profile_pic else None
                 form.save()
                 form_2.save()
+                new_profile_pic = profile.profile_pic.path
+                if old_profile_pic and request.FILES and old_profile_pic != new_profile_pic:
+                    os.remove(old_profile_pic)
+                    
             return redirect('profile')
 
     else:
