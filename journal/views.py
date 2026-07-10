@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
-from . forms import CreateUserForm, LoginForm, ThoughtForm,UpdateUserForm
+from . forms import CreateUserForm, LoginForm, ThoughtForm,UpdateUserForm, UpdateProfileForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.views.decorators.cache import never_cache
-from . models import Thought
+from . models import Thought,Profile
 
 from django.contrib.auth.models import User
 
@@ -17,7 +17,9 @@ def register(request):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
-            form.save()
+         
+            current_user = form.save()
+            Profile.objects.create(user=current_user)
             messages.success(request, "User created!")
             return redirect('my_login')
         
@@ -62,24 +64,26 @@ def logout_user(request):
 
 @login_required(login_url='my_login')
 def profile_management(request):
-    
+
+    profile = Profile.objects.get(user=request.user)
+    form_2 = UpdateProfileForm(instance=profile)
+
     if request.method == "POST":
         form = UpdateUserForm(request.POST, instance=request.user)
+
         if form.is_valid():
-            thought = form.save(commit=False)
-            thought.user = request.user
-            thought.save()
+            form.save()
             return redirect('profile')
-        else:
-            context = {
-                'UpdateUserForm': form,
-                'edit_mode': True
-            }
-            return render(request, 'journal/profile.html', context)
-           
+
     else:
         form = UpdateUserForm(instance=request.user)
-    context = {'UpdateUserForm':form}
+
+    context = {
+        'profile': profile,
+        'UpdateUserForm': form,
+        'edit_mode': request.method == "POST"
+    }
+
     return render(request, 'journal/profile.html', context)
 
 
