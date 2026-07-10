@@ -8,7 +8,8 @@ from django.forms.widgets import Textarea
 from . models import Thought, Profile
 
 class UpdateProfileForm(forms.ModelForm):
-    profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
+    profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file file-uploader', 'type': 'file', 'onchange' : 'upload()', 
+                                                                 'accept' : "image/*" }))
     class Meta:
         model = Profile 
         fields = ['profile_pic']

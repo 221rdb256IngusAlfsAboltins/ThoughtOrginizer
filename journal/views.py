@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.views.decorators.cache import never_cache
 from . models import Thought,Profile
+from django.db import transaction
 
 from django.contrib.auth.models import User
 
@@ -55,7 +56,7 @@ def my_login(request):
 @login_required(login_url='my_login')
 def logout_user(request):
     if request.method == "POST":
-        print(request.user)  # should show username before logout
+        
         logout(request)
         return redirect('home') 
     
@@ -66,22 +67,26 @@ def logout_user(request):
 def profile_management(request):
 
     profile = Profile.objects.get(user=request.user)
-    form_2 = UpdateProfileForm(instance=profile)
+    
 
     if request.method == "POST":
         form = UpdateUserForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
+        form_2 = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid() and form_2.is_valid():
+            with transaction.atomic():#abi vai neiviens netiek saglabaati ,gadijumā ja vienu no formām neizdodas saglabāt
+                form.save()
+                form_2.save()
             return redirect('profile')
 
     else:
         form = UpdateUserForm(instance=request.user)
+        form_2 = UpdateProfileForm(instance=profile)
 
     context = {
         'profile': profile,
         'UpdateUserForm': form,
-        'edit_mode': request.method == "POST"
+        'edit_mode': request.method == "POST",
+        'ProfileUpdateForm': form_2,
     }
 
     return render(request, 'journal/profile.html', context)

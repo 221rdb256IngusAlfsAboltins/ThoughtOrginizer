@@ -1,10 +1,10 @@
 {% extends "journal/navbar.html" %}
 
 {% load static %}
-
 {% block extra_css %}
  <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
-
+ <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+ <script src="https://use.fontawesome.com/fe459689b4.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -74,14 +74,29 @@
 
                     <div id="profile-edit" {% if not edit_mode %}style="display:none;"{% endif %}>
 
-                        <form method="POST">
+                        <form method="POST" autocomplete="off" enctype= "multipart/form-data">
                             {% csrf_token %}
 
                             <table class="profile_table">
                                 <tr class="table-title">
                                     <th colspan="2">Edit profile</th>
                                 </tr>
+                                <tr>
+                                    <th>Profile picture:</th>
+                                    <td>
+                                         <div class="profile-picture" style="background-image: url('{{profile.profile_pic.url}}')">
+                                            <h1 class="upload-icon">
+                                                <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                                            </h1>
+                                             {{ ProfileUpdateForm.profile_pic }}
+                                        </div>
+                                        
+                                       
 
+                                    {% for error in ProfileUpdateForm.profile_pic.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}</td>
+                                </tr>
                                 <tr>
                                     <th>Username:</th>
                                     <td>{{ UpdateUserForm.username }}
@@ -166,6 +181,30 @@
         profileEdit.style.display = "none";
         profileView.style.display = "block";
     };
-    
+
+    function upload() {
+
+        const fileUploadInput = document.querySelector('.file-uploader');
+
+        const image = fileUploadInput.files[0];
+
+        if (!image.type.includes('image')) {
+            return alert('Only images are allowed!');
+        }
+
+        if (image.size > 10_000_000) {
+            return alert('Maximum upload size is 10MB!');
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(image);
+        
+
+        fileReader.onload = (fileReaderEvent) => {
+            const profilePicture = document.querySelector('.profile-picture');
+            profilePicture.style.backgroundImage = `url(${fileReaderEvent.target.result})`;
+        }
+    }
+
 </script>
+
 {% endblock %}
